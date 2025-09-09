@@ -1,0 +1,64 @@
+{
+	"name": "nextjs-template",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"lint:fix": "next lint --fix",
+		"test": "vitest",
+		"test:ui": "vitest --ui",
+		"test:coverage": "vitest run --coverage",
+		"format": "prettier --write \"./**/*.{ts,tsx,json,scss,css,js,jsx}\"",
+		"format:check": "prettier --check .",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"**/*.{js,jsx,ts,tsx}": [
+			"next lint --fix",
+			"prettier --write ."
+		]
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.69.0",
+		"@tanstack/react-query-devtools": "^5.69.0",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"lucide-react": "^0.484.0",
+		"next": "15.2.4",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-error-boundary": "^6.0.0"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.8.0",
+		"@commitlint/config-conventional": "^19.8.0",
+		"@eslint/eslintrc": "^3",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
+		"@testing-library/user-event": "^14.6.1",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"@vitejs/plugin-react": "^4.3.4",
+		"@vitest/ui": "^3.0.9",
+		"autoprefixer": "^10.4.21",
+		"cross-env": "^7.0.3",
+		"eslint": "^9",
+		"eslint-config-next": "15.2.4",
+		"husky": "^9.1.7",
+		"jsdom": "^26.0.0",
+		"lint-staged": "^15.5.0",
+		"postcss-custom-media": "^11.0.6",
+		"postcss-nested": "^7.0.2",
+		"prettier": "^3.5.3",
+		"sass": "^1.92.1",
+		"shelljs": "^0.9.2",
+		"typescript": "^5",
+		"typescript-eslint": "^8.28.0",
+		"typescript-plugin-css-modules": "^5.2.0",
+		"vitest": "^3.0.9"
+	}
+}

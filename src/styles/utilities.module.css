@@ -1,0 +1,359 @@
+/* Layout Utilities */
+.flex {
+	display: flex;
+}
+
+.flexCol {
+	display: flex;
+	flex-direction: column;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: row;
+}
+
+.itemsCenter {
+	align-items: center;
+}
+
+.justifyCenter {
+	justify-content: center;
+}
+
+.justifyBetween {
+	justify-content: space-between;
+}
+
+.justifyAround {
+	justify-content: space-around;
+}
+
+.grid {
+	display: grid;
+}
+
+.block {
+	display: block;
+}
+
+.inline {
+	display: inline;
+}
+
+.inlineBlock {
+	display: inline-block;
+}
+
+.hidden {
+	display: none;
+}
+
+/* Positioning */
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.fixed {
+	position: fixed;
+}
+
+.sticky {
+	position: sticky;
+}
+
+/* Sizing */
+.wFull {
+	width: 100%;
+}
+
+.hFull {
+	height: 100%;
+}
+
+.wScreen {
+	width: 100vw;
+}
+
+.hScreen {
+	height: 100vh;
+}
+
+.maxWFull {
+	max-width: 100%;
+}
+
+.maxHFull {
+	max-height: 100%;
+}
+
+/* Spacing */
+.m0 {
+	margin: 0;
+}
+.p0 {
+	padding: 0;
+}
+
+.mxs {
+	margin: var(--spacing-xs);
+}
+.pxs {
+	padding: var(--spacing-xs);
+}
+
+.msm {
+	margin: var(--spacing-sm);
+}
+.psm {
+	padding: var(--spacing-sm);
+}
+
+.mmd {
+	margin: var(--spacing-md);
+}
+.pmd {
+	padding: var(--spacing-md);
+}
+
+.mlg {
+	margin: var(--spacing-lg);
+}
+.plg {
+	padding: var(--spacing-lg);
+}
+
+.mxl {
+	margin: var(--spacing-xl);
+}
+.pxl {
+	padding: var(--spacing-xl);
+}
+
+.m2xl {
+	margin: var(--spacing-2xl);
+}
+.p2xl {
+	padding: var(--spacing-2xl);
+}
+
+/* Margin/Padding directional */
+.mtxs {
+	margin-top: var(--spacing-xs);
+}
+.ptxs {
+	padding-top: var(--spacing-xs);
+}
+
+.mtsm {
+	margin-top: var(--spacing-sm);
+}
+.ptsm {
+	padding-top: var(--spacing-sm);
+}
+
+.mtmd {
+	margin-top: var(--spacing-md);
+}
+.ptmd {
+	padding-top: var(--spacing-md);
+}
+
+.mtlg {
+	margin-top: var(--spacing-lg);
+}
+.ptlg {
+	padding-top: var(--spacing-lg);
+}
+
+.mtxl {
+	margin-top: var(--spacing-xl);
+}
+.ptxl {
+	padding-top: var(--spacing-xl);
+}
+
+/* Text Utilities */
+.textLeft {
+	text-align: left;
+}
+
+.textCenter {
+	text-align: center;
+}
+
+.textRight {
+	text-align: right;
+}
+
+.textXs {
+	font-size: var(--font-size-xs);
+}
+
+.textSm {
+	font-size: var(--font-size-sm);
+}
+
+.textBase {
+	font-size: var(--font-size-base);
+}
+
+.textLg {
+	font-size: var(--font-size-lg);
+}
+
+.textXl {
+	font-size: var(--font-size-xl);
+}
+
+.text2xl {
+	font-size: var(--font-size-2xl);
+}
+
+.text3xl {
+	font-size: var(--font-size-3xl);
+}
+
+.text4xl {
+	font-size: var(--font-size-4xl);
+}
+
+.fontNormal {
+	font-weight: var(--font-weight-normal);
+}
+
+.fontMedium {
+	font-weight: var(--font-weight-medium);
+}
+
+.fontSemibold {
+	font-weight: var(--font-weight-semibold);
+}
+
+.fontBold {
+	font-weight: var(--font-weight-bold);
+}
+
+/* Colors */
+.textPrimary {
+	color: var(--color-text-primary);
+}
+
+.textSecondary {
+	color: var(--color-text-secondary);
+}
+
+.textTertiary {
+	color: var(--color-text-tertiary);
+}
+
+.bgPrimary {
+	background-color: var(--color-primary);
+}
+
+.bgSecondary {
+	background-color: var(--color-secondary);
+}
+
+.bgMain {
+	background-color: var(--color-main);
+}
+
+.bgSubtle {
+	background-color: var(--color-subtle);
+}
+
+/* Border Radius */
+.roundedSm {
+	border-radius: var(--radius-sm);
+}
+
+.roundedMd {
+	border-radius: var(--radius-md);
+}
+
+.roundedLg {
+	border-radius: var(--radius-lg);
+}
+
+.roundedXl {
+	border-radius: var(--radius-xl);
+}
+
+.roundedFull {
+	border-radius: 50%;
+}
+
+/* Shadows */
+.shadowCard {
+	box-shadow: var(--shadow-card);
+}
+
+.shadowDropdown {
+	box-shadow: var(--shadow-dropdown);
+}
+
+/* Transitions */
+.transition {
+	transition: all 0.2s ease;
+}
+
+.transitionColors {
+	transition:
+		color 0.2s ease,
+		background-color 0.2s ease,
+		border-color 0.2s ease;
+}
+
+/* Responsive utilities */
+@media (min-width: 640px) {
+	.smFlex {
+		display: flex;
+	}
+	.smHidden {
+		display: none;
+	}
+	.smBlock {
+		display: block;
+	}
+}
+
+@media (min-width: 768px) {
+	.mdFlex {
+		display: flex;
+	}
+	.mdHidden {
+		display: none;
+	}
+	.mdBlock {
+		display: block;
+	}
+}
+
+@media (min-width: 1024px) {
+	.lgFlex {
+		display: flex;
+	}
+	.lgHidden {
+		display: none;
+	}
+	.lgBlock {
+		display: block;
+	}
+}
+
+@media (min-width: 1280px) {
+	.xlFlex {
+		display: flex;
+	}
+	.xlHidden {
+		display: none;
+	}
+	.xlBlock {
+		display: block;
+	}
+}
