@@ -13,12 +13,19 @@ html {
 }
 
 body {
+	min-height: 100vh;
+	margin: 0;
+
+	background-color: var(--color-background-primary);
+	background: linear-gradient(to bottom, var(--color-background-primary), var(--color-background-secondary));
+
+	color: var(--color-text-primary);
+	line-height: 1.6;
 	font-family:
-		"Geist Sans",
+		"Roboto",
 		-apple-system,
 		BlinkMacSystemFont,
 		"Segoe UI",
-		"Roboto",
 		"Oxygen",
 		"Ubuntu",
 		"Cantarell",
@@ -28,82 +35,46 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	margin: 0;
-	line-height: 1.6;
-	color: var(--color-text-primary);
-	background-color: var(--color-main);
 }
 
 /* CSS Custom Properties */
 :root {
 	/* Brand Colors */
-	--color-primary: hsl(356, 80%, 52%);
-	--color-secondary: hsl(240, 50%, 26%);
-	--color-surface-main: hsl(0, 0%, 100%);
-	--color-surface-alt: hsl(240, 25%, 97%);
+	--color-main: hsl(124, 32%, 90%);
 
 	/* Text Colors */
-	--color-text-primary: hsl(0, 0%, 10%);
-	--color-text-secondary: hsl(0, 0%, 29%);
-	--color-text-tertiary: hsl(0, 0%, 43%);
-
-	/* UI Elements */
-	--color-action-primary: hsl(356, 80%, 52%);
-	--color-action-secondary: hsl(240, 50%, 26%);
-	--color-action-disabled: hsl(0, 0%, 63%);
-	--color-action-hover: hsl(356, 73%, 45%);
-	--color-action-text: hsl(0, 0%, 100%);
-
-	/* Status Colors */
-	--color-status-pending: hsl(240, 12%, 60%);
-	--color-status-active: hsl(240, 50%, 26%);
+	--color-text-primary: hsl(0, 0%, 7%);
+	--color-text-secondary: hsla(0, 0%, 7%, 0.4);
 
 	/* Background Colors */
-	--color-main: hsl(0, 0%, 100%);
-	--color-subtle: hsl(240, 25%, 97%);
-	--color-inverse: hsl(0, 0%, 20%);
-	--color-navigation: hsl(240, 50%, 26%);
+	--color-background-primary: hsl(130, 37%, 97%);
+	--color-background-secondary: hsl(0, 0%, 100%);
 
 	/* Border Colors */
-	--color-border-subtle: hsl(0, 0%, 91%);
-	--color-border-input: hsl(0, 0%, 85%);
-
-	/* Icon Colors */
-	--color-icon-subtle: hsl(0, 0%, 77%);
-	--color-icon-emphasis: hsl(0, 0%, 31%);
-
-	/* Form Elements */
-	--color-input-background: hsl(0, 0%, 97%);
-	--color-input-border: hsl(0, 0%, 85%);
-	--color-input-focus: hsl(240, 50%, 26%);
-
-	/* Shadows */
-	--shadow-card: 0 2px 5px hsla(0, 0%, 0%, 0.05);
-	--shadow-dropdown: 0 4px 6px hsla(0, 0%, 0%, 0.1);
-
-	/* Spacing */
-	--spacing-xs: 0.25rem;
-	--spacing-sm: 0.5rem;
-	--spacing-md: 1rem;
-	--spacing-lg: 1.5rem;
-	--spacing-xl: 2rem;
-	--spacing-2xl: 3rem;
-
-	/* Border Radius */
-	--radius-sm: 0.25rem;
-	--radius-md: 0.5rem;
-	--radius-lg: 0.75rem;
-	--radius-xl: 1rem;
+	--color-border-main: hsl(112, 17%, 83%);
 
 	/* Font Sizes */
-	--font-size-xs: 0.75rem;
-	--font-size-sm: 0.875rem;
-	--font-size-base: 1rem;
-	--font-size-lg: 1.125rem;
-	--font-size-xl: 1.25rem;
-	--font-size-2xl: 1.5rem;
-	--font-size-3xl: 1.875rem;
-	--font-size-4xl: 2.25rem;
+	--font-size-xs: 0.625rem; /* 10 */
+	--font-size-sm: 0.875rem; /* 14 */
+	--font-size-base: 1rem; /* 16 */
+	--font-size-lg: 1.25rem; /* 20 */
+	--font-size-xl: 1.375rem; /* 22 */
+	--font-size-2xl: 1.5rem; /* 24 */
+	--font-size-3xl: 1.875rem; /* 30 */
+	--font-size-4xl: 4rem; /* 64 */
+	
+	/* Shadows */
+	--shadow-card: 0 5px 15px 0 hsla(0, 0%, 0%, 0.05);
+
+	/* Spacing */
+	--spacing: 1.25rem; /* 20 */
+	--spacing-sm: calc(var(--spacing) / 4); /* 5 */
+	--spacing-md: calc(var(--spacing) / 2); /* 10 */
+	--spacing-lg: calc(var(--spacing) * 2); /* 40 */
+
+	/* Border Radius */
+	--radius: 20px;
+	--radius-xl: 100%;
 
 	/* Font Weights */
 	--font-weight-normal: 400;
@@ -116,13 +87,9 @@ body {
 @media (prefers-color-scheme: dark) {
 	:root {
 		--color-main: hsl(0, 0%, 10%);
-		--color-subtle: hsl(0, 0%, 15%);
 		--color-text-primary: hsl(0, 0%, 95%);
 		--color-text-secondary: hsl(0, 0%, 75%);
-		--color-text-tertiary: hsl(0, 0%, 60%);
-		--color-border-subtle: hsl(0, 0%, 25%);
-		--color-border-input: hsl(0, 0%, 30%);
-		--color-input-background: hsl(0, 0%, 15%);
+		--color-border-main: hsl(0, 0%, 25%);
 	}
 }
 
@@ -139,20 +106,26 @@ h6 {
 }
 
 h1 {
+	font-size: var(--font-size-4xl);
+	font-weight: var(--font-weight-bold);
+}
+
+h2 {
 	font-size: var(--font-size-3xl);
 }
-h2 {
+
+h3 {
 	font-size: var(--font-size-2xl);
 }
-h3 {
-	font-size: var(--font-size-xl);
-}
+
 h4 {
 	font-size: var(--font-size-lg);
 }
+
 h5 {
 	font-size: var(--font-size-base);
 }
+
 h6 {
 	font-size: var(--font-size-sm);
 }
@@ -164,12 +137,12 @@ p {
 
 /* Links */
 a {
-	color: var(--color-action-primary);
+	color: var(--color-text-primary);
 	text-decoration: none;
 }
 
 a:hover {
-	color: var(--color-action-hover);
+	color: var(--color-text-secondary);
 	text-decoration: underline;
 }
 
@@ -211,7 +184,7 @@ select {
 	padding: 0 var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
 	.container {
 		padding: 0 var(--spacing-lg);
 	}
