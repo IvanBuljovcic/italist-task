@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
 	title: "Italist - Fake store",
-	description: "An amazing store for all your shopping needs. If your needs are for fake products."
+	description: "An amazing store for all your shopping needs. If your needs are for fake products.",
 };
 
 export default function RootLayout({

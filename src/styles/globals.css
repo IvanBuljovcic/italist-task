@@ -62,7 +62,7 @@ body {
 	--font-size-2xl: 1.5rem; /* 24 */
 	--font-size-3xl: 1.875rem; /* 30 */
 	--font-size-4xl: 4rem; /* 64 */
-	
+
 	/* Shadows */
 	--shadow-card: 0 5px 15px 0 hsla(0, 0%, 0%, 0.05);
 
