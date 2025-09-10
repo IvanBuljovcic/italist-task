@@ -16,6 +16,8 @@
 	"typescript.preferences.includePackageJsonAutoImports": "off",
 	"typescript.suggest.autoImports": true,
 	"typescript.preferences.includeInlayParameterNameHints": "all",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.preferences.useLabelDetailsInCompletionEntries": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -37,5 +39,9 @@
 	},
 	"css.validate": true,
 	"scss.validate": true,
-	"css.lint.unknownAtRules": "ignore"
+	"css.lint.unknownAtRules": "ignore",
+	
+	// CSS Modules specific settings
+	"cssModules.camelCase": true,
+	"cssModules.extension": ".module.css"
 }
