@@ -40,7 +40,7 @@
 	"css.validate": true,
 	"scss.validate": true,
 	"css.lint.unknownAtRules": "ignore",
-	
+
 	// CSS Modules specific settings
 	"cssModules.camelCase": true,
 	"cssModules.extension": ".module.css"
