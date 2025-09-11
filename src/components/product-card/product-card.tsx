@@ -1,6 +1,7 @@
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Product } from "@/types/product";
 import { clsx } from "clsx";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import styles from "./product-card.module.css";
 
@@ -10,6 +11,11 @@ export const ProductCard = (props: Product) => {
 	return (
 		<article className={css("container")}>
 			<div className={css("image-wrapper")}>
+				<div className={css("tag-wrapper")}>
+					<button type="submit" className={css('cta-favorites')}>
+						<Heart width={12} height={12} />
+					</button>
+				</div>
 				<Image src={props.image_link} alt={props.title} fill />
 			</div>
 

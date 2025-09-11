@@ -2,6 +2,7 @@
 :root {
 	/* Brand Colors */
 	--color-main: hsl(129, 41%, 97%);
+	--color-accent: hsl(124, 32%, 90%);
 
 	/* Text Colors */
 	--color-text-primary: rgb(17, 17, 17);
