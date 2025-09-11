@@ -13,7 +13,8 @@
 		"test:coverage": "vitest run --coverage",
 		"format": "prettier --write \"./**/*.{ts,tsx,json,scss,css,js,jsx}\"",
 		"format:check": "prettier --check .",
-		"prepare": "husky"
+		"prepare": "husky",
+		"start:server": "cd products-api-server && pnpm start"
 	},
 	"lint-staged": {
 		"**/*.{js,jsx,ts,tsx}": [

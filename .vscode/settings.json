@@ -4,7 +4,12 @@
 		"source.fixAll.eslint": "always",
 		"source.organizeImports": "explicit"
 	},
-	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
 	"eslint.rules.customizations": [
 		{
 			"rule": "@typescript-eslint/no-unused-vars",
@@ -40,8 +45,6 @@
 	"css.validate": true,
 	"scss.validate": true,
 	"css.lint.unknownAtRules": "ignore",
-
 	// CSS Modules specific settings
 	"cssModules.camelCase": true,
-	"cssModules.extension": ".module.css"
 }

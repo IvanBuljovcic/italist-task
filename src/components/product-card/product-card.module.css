@@ -1,0 +1,103 @@
+:root {
+	--font-size-title: var(--font-size-lg);
+	--font-size-category: var(--font-size-sm);
+	--font-size-price: var(--font-size-xl);
+	--font-size-cta: var(--font-size-sm);
+
+	--color-title: var(--color-text-primary);
+	--color-category: var(--color-text-secondary);
+	--color-price: var(--color-text-primary);
+	--color-price-old: var(--color-text-secondary);
+	--color-border: var(--color-border-main);
+	--color-tag-background: var(--color-main);
+	--color-tag-foreground: var(--color-text-primary);
+	--color-favorite-background: var(--color-main);
+	--color-favorite-foreground: var(--color-text-primary);
+	--color-cta-background: transparent;
+	--color-cta-background-active: var(--color-border-main);
+	--color-cta-foreground: var(--color-text-primary);
+	--color-image-background: var(--color-background-secondary);
+
+	--border-radius-cta: var(--radius-lg);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.image-wrapper {
+	width: 100%;
+	padding: 5px;
+	position: relative;
+
+	background-color: var(--color-image-background);
+	box-shadow: var(--shadow-card);
+
+	border-radius: var(--radius);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--color-border-main);
+}
+
+.image-wrapper img {
+	object-fit: cover;
+	position: relative !important; /* overriding nextjs default 'absolute' for image when 'fill' is true */
+}
+
+.header {
+	display: flex;
+	flex-flow: column wrap;
+	gap: var(--spacing-sm);
+}
+
+.title {
+	font-size: var(--font-size-title);
+	font-weight: var(--font-weight-normal);
+}
+
+.category {
+	color: var(--color-category);
+	font-size: var(--font-size-category);
+	font-weight: var(--font-weight-normal);
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.prices {
+	display: flex;
+	flex-flow: row wrap;
+	gap: var(--spacing-md);
+	font-size: var(--font-size-price);
+}
+
+.old-price {
+	color: var(--color-price-old);
+	/* text-decoration: underline;
+	text-underline-offset: -0.25em;
+	text-decoration-skip-ink: none; */
+	text-decoration: line-through;
+}
+
+.cta {
+	padding: 0.85em 1.065em;
+
+	background-color: var(--color-cta-background);
+
+	border-radius: var(--border-radius-cta);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--color-border-main);
+
+	font-size: var(--font-size-cta);
+
+	transition: background-color 300ms ease;
+
+	&:hover {
+		background-color: var(--color-cta-background-active);
+	}
+}
