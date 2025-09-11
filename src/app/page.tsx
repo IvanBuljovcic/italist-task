@@ -1,3 +1,9 @@
+import { ProductList } from "@/components/product-list/product-list";
+
 export default function Home() {
-	return <div>Hello world</div>;
+	return (
+		<div>
+			<ProductList />
+		</div>
+	);
 }
