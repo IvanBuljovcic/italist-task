@@ -1,7 +1,6 @@
 "use client";
 
 import { ProductCard } from "@/components/product-card/product-card";
-import products from "@/data/products.json";
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Product } from "@/types/product";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -9,12 +8,18 @@ import styles from "./product-list.module.css";
 
 const css = createStrictClassSelector(styles);
 
-export const ProductList = () => {
+type ProductListProps = {
+	products: Product[];
+};
+
+export const ProductList = ({ products }: ProductListProps) => {
 	const ITEMS_PER_LOAD = 20;
 	const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const observerTarget = useRef(null);
+
+	// const { allSizes } = useSizes();
 
 	const hasMoreProducts = visibleCount < products.length;
 	const visibleProducts = products.slice(0, visibleCount);
@@ -38,7 +43,7 @@ export const ProductList = () => {
 		} finally {
 			setIsLoading(false);
 		}
-	}, [isLoading, hasMoreProducts]);
+	}, [isLoading, hasMoreProducts, products.length]);
 
 	const listWrapper = useRef(null);
 
