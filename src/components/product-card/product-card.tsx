@@ -1,6 +1,6 @@
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Product } from "@/types/product";
-import { clsx } from 'clsx';
+import { clsx } from "clsx";
 import Image from "next/image";
 import styles from "./product-card.module.css";
 
@@ -22,10 +22,12 @@ export const ProductCard = (props: Product) => {
 			<footer className={css("footer")}>
 				<div className={css("prices")}>
 					{props.sale_price && <span>{props.sale_price}</span>}
-					<span className={clsx(props.sale_price && css('old-price'))}>{props.list_price}</span>
+					<span className={clsx(props.sale_price && css("old-price"))}>{props.list_price}</span>
 				</div>
 
-				<button className={css('cta')} type="submit">Add To Cart</button>
+				<button className={css("cta")} type="submit">
+					Add To Cart
+				</button>
 			</footer>
 		</article>
 	);

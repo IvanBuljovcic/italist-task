@@ -5,12 +5,12 @@ const nextConfig: NextConfig = {
 	images: {
 		remotePatterns: [
 			{
-				protocol: 'https',
-				hostname: 'cdn-images.italist.com',
-				pathname: '/**'
-			}
-		]
-	}
+				protocol: "https",
+				hostname: "cdn-images.italist.com",
+				pathname: "/**",
+			},
+		],
+	},
 };
 
 export default nextConfig;
