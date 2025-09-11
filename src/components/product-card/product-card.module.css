@@ -106,7 +106,7 @@
 .tag-wrapper {
 	display: flex;
 	flex-flow: row;
-	
+
 	position: absolute;
 	top: var(--spacing);
 	right: var(--spacing);
@@ -118,7 +118,7 @@
 	display: flex;
 	padding: 0.7rem;
 	place-content: center;
-	
+
 	background-color: var(--color-favorite-background);
 
 	border-radius: var(--radius-100);

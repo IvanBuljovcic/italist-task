@@ -12,7 +12,7 @@ export const ProductCard = (props: Product) => {
 		<article className={css("container")}>
 			<div className={css("image-wrapper")}>
 				<div className={css("tag-wrapper")}>
-					<button type="submit" className={css('cta-favorites')}>
+					<button type="submit" className={css("cta-favorites")}>
 						<Heart width={12} height={12} />
 					</button>
 				</div>
