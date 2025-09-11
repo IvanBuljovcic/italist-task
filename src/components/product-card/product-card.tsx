@@ -1,18 +1,13 @@
-"use client";
-
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Product } from "@/types/product";
 import { clsx } from "clsx";
 import { Heart } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
+import { ProductCardImage } from "./product-card-image";
 import styles from "./product-card.module.css";
 
 const css = createStrictClassSelector(styles);
 
 export const ProductCard = (props: Product) => {
-	const [isImageLoading, setIsImageLoading] = useState(true);
-
 	return (
 		<article className={css("container")}>
 			<div className={css("image-wrapper")}>
@@ -22,23 +17,7 @@ export const ProductCard = (props: Product) => {
 					</button>
 				</div>
 
-				{isImageLoading && (
-					<div className={css("image-placeholder")}>
-						<div className={css("skeleton-loader")}></div>
-					</div>
-				)}
-
-				<Image
-					src={props.image_link}
-					alt={props.title}
-					width={300}
-					height={483}
-					loading="lazy"
-					quality={85}
-					placeholder="empty"
-					onLoad={() => setIsImageLoading(false)}
-					className={clsx(isImageLoading ? css("loading") : css("loaded"))}
-				/>
+				<ProductCardImage src={props.image_link} alt={props.title} />
 			</div>
 
 			<header className={css("header")}>
