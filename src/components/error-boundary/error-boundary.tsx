@@ -3,9 +3,8 @@
 import { useRouter } from "next/navigation";
 import { ComponentType, ErrorInfo, ReactNode, useState } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
-import styles from "./smart-error-boundary.module.css";
+import styles from "./error-boundary.module.css";
 
-// Extended error context for logging
 type ErrorContext = {
 	context: string;
 	retryCount: number;
@@ -13,7 +12,6 @@ type ErrorContext = {
 	timestamp: Date;
 };
 
-// Props for custom error fallback components
 type CustomErrorFallbackProps = FallbackProps & {
 	retryCount: number;
 	maxRetries: number;
@@ -22,19 +20,14 @@ type CustomErrorFallbackProps = FallbackProps & {
 	enableNavigation: boolean;
 };
 
-// Error handler function type - using React's ErrorInfo
 type ErrorHandler = (error: Error, errorInfo: ErrorInfo, context: ErrorContext) => void;
 
-// Retry handler function type
 type RetryHandler = () => void | Promise<void>;
 
-// Reset keys type (for automatic boundary reset)
 type ResetKeys = Array<string | number | boolean | null | undefined>;
 
-// Default error fallback component props
 type DefaultErrorFallbackProps = CustomErrorFallbackProps;
 
-// Main SmartErrorBoundary props
 type SmartErrorBoundaryProps = {
 	children: ReactNode;
 	fallback?: ComponentType<CustomErrorFallbackProps>;
@@ -48,7 +41,6 @@ type SmartErrorBoundaryProps = {
 	className?: string;
 };
 
-// Default error fallback component
 const DefaultErrorFallback: React.FC<DefaultErrorFallbackProps> = ({
 	error,
 	resetErrorBoundary,
@@ -165,7 +157,6 @@ const SmartErrorBoundary: React.FC<SmartErrorBoundaryProps> = ({
 			timestamp: new Date(),
 		};
 
-		// Log error with context
 		// eslint-disable-next-line no-console
 		console.error(
 			`[${context}] Error:`,
