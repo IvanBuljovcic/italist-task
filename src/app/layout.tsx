@@ -1,3 +1,4 @@
+import SmartErrorBoundary from "@/components/error-boundary/error-boundary";
 import { QueryProvider } from "@/providers/QueryProvider";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -15,7 +16,14 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<QueryProvider>{children}</QueryProvider>
+				<SmartErrorBoundary
+					context="Application Root"
+					level="app"
+					enableNavigation={true}
+					maxRetries={2}
+				>
+					<QueryProvider>{children}</QueryProvider>
+				</SmartErrorBoundary>
 			</body>
 		</html>
 	);

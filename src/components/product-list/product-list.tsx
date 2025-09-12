@@ -1,5 +1,6 @@
 "use client";
 
+import SmartErrorBoundary from "@/components/error-boundary/error-boundary";
 import { ProductCard } from "@/components/product-card/product-card";
 import { useProductListState } from "@/hooks/use-product-list-state";
 import { createStrictClassSelector } from "@/lib/class-selectors";
@@ -55,7 +56,14 @@ export const ProductList = ({ initialFilters = {} }: ProductListProps) => {
 		<div className={css("container")}>
 			<div className={css("list")}>
 				{products.map((product) => (
-					<ProductCard {...product} key={product.id} />
+					<SmartErrorBoundary
+						key={product.id}
+						context={`Product Card - ${product.title}`}
+						level="component"
+						maxRetries={1}
+					>
+						<ProductCard {...product} />
+					</SmartErrorBoundary>
 				))}
 
 				{products.length === 0 && <div>No products found matching your criteria.</div>}

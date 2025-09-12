@@ -1,5 +1,6 @@
 "use client";
 
+import SmartErrorBoundary from "@/components/error-boundary/error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
@@ -18,9 +19,15 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
 	);
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			{children}
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
+		<SmartErrorBoundary
+			context="React Query Provider"
+			level="app"
+			maxRetries={2}
+		>
+			<QueryClientProvider client={queryClient}>
+				{children}
+				<ReactQueryDevtools initialIsOpen={false} />
+			</QueryClientProvider>
+		</SmartErrorBoundary>
 	);
 }

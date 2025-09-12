@@ -1,5 +1,6 @@
 "use client";
 
+import SmartErrorBoundary from "@/components/error-boundary/error-boundary";
 import { SizeFilter } from "@/components/filters/size/filter-size";
 import { useFilterParams } from "@/hooks/use-filter-params";
 import { createStrictClassSelector } from "@/lib/class-selectors";
@@ -64,9 +65,21 @@ export const ProductFilters = ({ initialFilters = {} }: ProductFiltersProps) => 
 
 	return (
 		<div className={css("container")}>
-			<SizeFilter sizes={sizes} selectedSizes={filters.sizes || []} onSizeChange={handleSizeChange} />
+			<SmartErrorBoundary
+				context="Size Filter"
+				level="component"
+				maxRetries={2}
+			>
+				<SizeFilter sizes={sizes} selectedSizes={filters.sizes || []} onSizeChange={handleSizeChange} />
+			</SmartErrorBoundary>
 
-			<SearchFilter onChange={handleSearchChange} value={filters.search} />
+			<SmartErrorBoundary
+				context="Search Filter"
+				level="component"
+				maxRetries={2}
+			>
+				<SearchFilter onChange={handleSearchChange} value={filters.search} />
+			</SmartErrorBoundary>
 		</div>
 	);
 };

@@ -1,3 +1,4 @@
+import SmartErrorBoundary from "@/components/error-boundary/error-boundary";
 import { ProductFilters } from "@/components/product-filters/product-filters";
 import { ProductList } from "@/components/product-list/product-list";
 import { createStrictClassSelector } from "@/lib/class-selectors";
@@ -29,13 +30,25 @@ export default async function Home({ searchParams }: HomeProps) {
 		<main className={css("container")}>
 			<h1 className={css("title")}>Fake products</h1>
 
-			<Suspense fallback={<div>Loading filters...</div>}>
-				<ProductFilters initialFilters={initialFilters} />
-			</Suspense>
+			<SmartErrorBoundary
+				context="Product Filters"
+				level="component"
+				maxRetries={3}
+			>
+				<Suspense fallback={<div>Loading filters...</div>}>
+					<ProductFilters initialFilters={initialFilters} />
+				</Suspense>
+			</SmartErrorBoundary>
 
-			<Suspense fallback={<div>Loading products...</div>}>
-				<ProductList initialFilters={initialFilters} />
-			</Suspense>
+			<SmartErrorBoundary
+				context="Product List"
+				level="component"
+				maxRetries={3}
+			>
+				<Suspense fallback={<div>Loading products...</div>}>
+					<ProductList initialFilters={initialFilters} />
+				</Suspense>
+			</SmartErrorBoundary>
 		</main>
 	);
 }
