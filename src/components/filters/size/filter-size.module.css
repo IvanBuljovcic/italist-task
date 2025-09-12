@@ -1,0 +1,95 @@
+:root {
+	--color-cta-background: transparent;
+	--color-cta-background-active: var(--color-accent);
+	--color-cta-foreground: var(--color-text-primary);
+	--color-cta-focus: var(--color-accent);
+
+	--color-cta-selected-background: var(--color-accent);
+	--color-cta-selected-border: var(--color-accent);
+	--color-cta-selected-foreground: var(--color-text-primary);
+
+	--border-radius-cta: var(--radius-lg);
+}
+
+.container {
+	display: flex;
+	padding: var(--spacing-md) 0;
+	flex-flow: column wrap;
+	gap: var(--spacing-sm);
+}
+
+.title {
+	font-size: var(--font-size-2xl);
+}
+
+.button-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-sm);
+}
+
+.size-button {
+	padding: 0.85em 1.065em;
+
+	background-color: var(--color-cta-background);
+
+	border-radius: var(--border-radius-cta);
+	border-width: 1px;
+	border-style: solid;
+	border-color: var(--color-border-main);
+
+	font-size: var(--font-size-cta);
+
+	transition: background-color 300ms ease;
+
+	&:hover {
+		background-color: var(--color-cta-background-active);
+	}
+
+	&:focus {
+		outline: 2px solid var(--color-cta-focus);
+		outline-offset: 2px;
+	}
+
+	&.selected {
+		background-color: var(--color-cta-selected-background);
+		border-color: var(--color-cta-selected-border);
+		color: var(--color-cta-selected-foreground);
+	}
+
+	&.selected:hover {
+		background-color: var(--color-cta-background);
+	}
+
+	&.action {
+		background-color: #f3f4f6;
+		color: #6b7280;
+		font-style: italic;
+		border-style: dashed;
+
+		&:hover {
+			background-color: #e5e7eb;
+			color: #374151;
+		}
+	}
+}
+
+.clear-button {
+	background: none;
+	border: none;
+	color: #ef4444;
+	font-size: 14px;
+	cursor: pointer;
+	text-decoration: underline;
+	padding: 0;
+
+	&:hover {
+		color: #dc2626;
+	}
+
+	&:focus {
+		outline: 2px solid #ef4444;
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+}

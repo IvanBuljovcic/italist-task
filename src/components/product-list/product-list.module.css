@@ -50,3 +50,9 @@
 		background-color: var(--color-cta-background-active);
 	}
 }
+
+.prefetch-target {
+	position: absolute;
+	bottom: 800px;
+	height: 1px;
+}

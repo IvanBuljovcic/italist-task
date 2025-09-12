@@ -50,7 +50,8 @@ export const useInfiniteProducts = (filters: ProductFilters = {}) => {
 		select: (data) => ({
 			pages: data.pages,
 			pageParams: data.pageParams,
-			allProducts: data.pages.flatMap((page) => page.data),
+			allProducts: data.pages.flatMap((page) => page.data.products),
+			allSizes: data.pages.flatMap((page) => page.data.sizes),
 			totalCount: data.pages[data.pages.length - 1]?.pagination.totalCount || 0,
 			hasNextPage: data.pages[data.pages.length - 1]?.pagination.hasNextPage || false,
 		}),

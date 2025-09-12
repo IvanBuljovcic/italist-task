@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
 		// parse the file content and save it as a constant
 		const filePath = path.join(process.cwd(), "src", "data", "products.json");
 		const fileContent = readFileSync(filePath, "utf-8");
-		const allProducts = JSON.parse(fileContent);
+		const allProducts: Product[] = JSON.parse(fileContent);
 
 		// Query params
 		const searchParams = request.nextUrl.searchParams;
@@ -23,9 +23,27 @@ export async function GET(request: NextRequest) {
 
 		let filteredProducts = allProducts;
 
+		let allSizes = [];
+		const sizeSet = new Set<string>();
+
+		allProducts.forEach((product) => {
+			if (product.sizes?.trim()) {
+				product.sizes
+					.split(",") // didnt see any in the data but this is a wild guess that it should be comma or ';' separated
+					.map((size) => size.trim())
+					.forEach((size) => {
+						if (size) {
+							sizeSet.add(size);
+						}
+					});
+			}
+		});
+
+		allSizes = Array.from(sizeSet).sort();
+
 		if (search) {
 			filteredProducts = filteredProducts.filter(
-				(product: Product) =>
+				(product) =>
 					product.title.toLowerCase().includes(search.toLowerCase()) ||
 					product.description.toLowerCase().includes(search.toLowerCase()) ||
 					product.brand.toLowerCase().includes(search.toLowerCase())
@@ -34,8 +52,12 @@ export async function GET(request: NextRequest) {
 
 		if (selectedSizes.length > 0) {
 			filteredProducts = filteredProducts.filter((product: Product) => {
-				if (!product.sizes) return false;
+				if (!product.sizes) {
+					return false;
+				}
+
 				const productSizes = product.sizes.split(",").map((size: string) => size.trim());
+
 				return selectedSizes.some((selectedSize) => productSizes.includes(selectedSize));
 			});
 		}
@@ -47,7 +69,10 @@ export async function GET(request: NextRequest) {
 
 		return NextResponse.json({
 			success: true,
-			data: paginatedProducts,
+			data: {
+				products: paginatedProducts,
+				sizes: allSizes,
+			},
 			pagination: {
 				page,
 				limit: PRODUCTS_PER_PAGE,

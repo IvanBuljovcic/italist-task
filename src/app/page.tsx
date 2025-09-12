@@ -1,14 +1,29 @@
+import { ProductFilters } from "@/components/product-filters/product-filters";
 import { ProductList } from "@/components/product-list/product-list";
-import { SizesProvider } from "@/context/sizes-context";
-import products from "@/data/products.json";
-import { Product } from "@/types/product";
+import { Suspense } from "react";
 
-export default function Home() {
+type HomeProps = {
+	searchParams?: {
+		search?: string;
+		sizes?: string;
+	};
+};
+
+export default function Home({ searchParams }: HomeProps) {
+	const initialFilters = {
+		search: searchParams?.search,
+		sizes: searchParams?.sizes?.split(",").filter(Boolean) || [],
+	};
+
 	return (
 		<div>
-			<SizesProvider products={products as Product[]}>
-				<ProductList products={products as Product[]} />
-			</SizesProvider>
+			<h1>Fake products</h1>
+			<Suspense fallback={<div>Loading filters...</div>}>
+				<ProductFilters initialFilters={initialFilters} />
+			</Suspense>
+			<Suspense fallback={<div>Loading products...</div>}>
+				<ProductList initialFilters={initialFilters} />
+			</Suspense>
 		</div>
 	);
 }

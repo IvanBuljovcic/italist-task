@@ -1,7 +1,8 @@
 "use client";
 
 import { ProductCard } from "@/components/product-card/product-card";
-import { useInfiniteProducts, usePrefetchNextPage } from "@/hooks/infinite-products";
+import { useFilterParams } from "@/hooks/use-filter-params";
+import { useInfiniteProducts, usePrefetchNextPage } from "@/hooks/use-infinite-products";
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { useCallback, useEffect, useRef } from "react";
 import styles from "./product-list.module.css";
@@ -14,12 +15,14 @@ type ProductFilters = {
 };
 
 type ProductListProps = {
-	filters?: ProductFilters;
+	initialFilters?: ProductFilters;
 };
 
-export const ProductList = ({ filters = {} }: ProductListProps) => {
+export const ProductList = ({ initialFilters = {} }: ProductListProps) => {
 	const observerTarget = useRef<HTMLDivElement>(null);
 	const prefetchTarget = useRef<HTMLDivElement>(null);
+
+	const { filters } = useFilterParams(initialFilters);
 
 	const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError, error } =
 		useInfiniteProducts(filters);
@@ -59,7 +62,7 @@ export const ProductList = ({ filters = {} }: ProductListProps) => {
 			},
 			{
 				threshold: 0.1,
-				rootMargin: "400px", // Larger margin for prefetching
+				rootMargin: "400px",
 			}
 		);
 
@@ -132,9 +135,11 @@ export const ProductList = ({ filters = {} }: ProductListProps) => {
 				</div>
 			)}
 
+			<div ref={prefetchTarget} className={css("prefetch-target")} />
+
 			<div>
 				Showing {allProducts.length} of {totalCount} products
-				{!hasNextPage && allProducts.length > 0 && <span>All products loaded</span>}
+				{!hasNextPage && allProducts.length > 0 && <span> - All products loaded</span>}
 			</div>
 		</div>
 	);
