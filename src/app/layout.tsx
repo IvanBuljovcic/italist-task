@@ -8,13 +8,22 @@ export const metadata: Metadata = {
 		template: "%s | Italist Fashion Store",
 		default: "Italist Fashion Store - Premium Fashion & Accessories",
 	},
-	description: "Discover premium fashion products from top brands. Shop clothing, accessories, and bags with fast shipping and authentic quality guarantee.",
-	
+	description:
+		"Discover premium fashion products from top brands. Shop clothing, accessories, and bags with fast shipping and authentic quality guarantee.",
+
 	keywords: [
-		"fashion", "clothing", "accessories", "bags", "premium", "designer",
-		"women's fashion", "men's fashion", "luxury brands", "authentic products"
+		"fashion",
+		"clothing",
+		"accessories",
+		"bags",
+		"premium",
+		"designer",
+		"women's fashion",
+		"men's fashion",
+		"luxury brands",
+		"authentic products",
 	].join(", "),
-	
+
 	authors: [{ name: "Ivan Buljovcic" }],
 	creator: "Italist Fashion Store",
 	publisher: "Italist Fashion Store",
