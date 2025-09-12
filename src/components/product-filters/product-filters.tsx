@@ -5,6 +5,7 @@ import { useFilterParams } from "@/hooks/use-filter-params";
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback } from "react";
+import { SearchFilter } from "../filters/search/filter-search";
 import styles from "./product-filters.module.css";
 
 const css = createStrictClassSelector(styles);
@@ -46,6 +47,13 @@ export const ProductFilters = ({ initialFilters = {} }: ProductFiltersProps) => 
 		[updateFilter]
 	);
 
+	const handleSearchChange = useCallback(
+		(newSearch: string | undefined) => {
+			updateFilter("search", newSearch);
+		},
+		[updateFilter]
+	);
+
 	if (isLoading) {
 		return (
 			<div className={css("container")}>
@@ -57,6 +65,8 @@ export const ProductFilters = ({ initialFilters = {} }: ProductFiltersProps) => 
 	return (
 		<div className={css("container")}>
 			<SizeFilter sizes={sizes} selectedSizes={filters.sizes || []} onSizeChange={handleSizeChange} />
+
+			<SearchFilter onChange={handleSearchChange} value={filters.search} />
 		</div>
 	);
 };

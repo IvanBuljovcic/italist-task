@@ -1,8 +1,11 @@
 .container {
+	display: flex;
 	max-width: 1300px;
 	padding: var(--spacing-md);
 	margin-inline: auto;
-	margin-block-end: var(--spacing-lg);
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: start;
 
 	border-radius: var(--border-radius-lg);
 	border: 1px solid var(--color-border-light);
