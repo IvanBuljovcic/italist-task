@@ -6,7 +6,7 @@ import { clsx } from "clsx";
 import { ImageOff } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import styles from "./product-card-imate.module.css";
+import styles from "./product-card-image.module.css";
 
 const css = createStrictClassSelector(styles);
 
