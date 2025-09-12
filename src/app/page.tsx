@@ -2,7 +2,7 @@ import { ProductFilters } from "@/components/product-filters/product-filters";
 import { ProductList } from "@/components/product-list/product-list";
 import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Suspense } from "react";
-import styles from './page.module.css';
+import styles from "./page.module.css";
 
 const css = createStrictClassSelector(styles);
 
