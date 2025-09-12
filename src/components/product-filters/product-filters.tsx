@@ -11,7 +11,7 @@ import styles from "./product-filters.module.css";
 
 const css = createStrictClassSelector(styles);
 
-type ProductFiltersType = {
+export type ProductFiltersType = {
 	search?: string;
 	sizes?: string[];
 };
