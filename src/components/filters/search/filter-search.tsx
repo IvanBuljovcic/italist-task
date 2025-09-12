@@ -21,9 +21,9 @@ type SearchFilterProps = {
 export const SearchFilter = ({
 	value = "",
 	onChange,
-	placeholder = "Search products...",
+	placeholder = "Search products",
 	debounceMs = 300,
-	showStats = false,
+	showStats = true,
 	resultCount = 0,
 }: SearchFilterProps) => {
 	const [inputValue, setInputValue] = useState(value);
