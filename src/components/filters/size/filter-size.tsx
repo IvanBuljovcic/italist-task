@@ -56,13 +56,13 @@ export const SizeFilter = ({ sizes, selectedSizes, onSizeChange, initialVisibleC
 				))}
 
 				{hasMoreSizes && !showAll && (
-					<button onClick={handleShowMore} className={css("size-button", "action")} type="button">
+					<button onClick={handleShowMore} className={css("size-button")} type="button">
 						Show More ({sizes.length - initialVisibleCount} more)
 					</button>
 				)}
 
 				{showAll && hasMoreSizes && (
-					<button onClick={handleShowLess} className={css("size-button", "action")} type="button">
+					<button onClick={handleShowLess} className={css("size-button")} type="button">
 						Show Less
 					</button>
 				)}
@@ -73,7 +73,7 @@ export const SizeFilter = ({ sizes, selectedSizes, onSizeChange, initialVisibleC
 					</button>
 				)}
 			</div>
-			{selectedSizes.length > 0 && `${selectedSizes.length} sizes selected`}
+			{selectedSizes.length > 0 && `${selectedSizes.length} size${selectedSizes.length > 1 ? "s" : ""} selected`}
 		</div>
 	);
 };

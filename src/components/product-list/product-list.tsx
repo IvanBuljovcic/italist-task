@@ -53,19 +53,21 @@ export const ProductList = ({ initialFilters = {} }: ProductListProps) => {
 
 	return (
 		<div className={css("container")}>
-			{products.map((product) => (
-				<ProductCard {...product} key={product.id} />
-			))}
+			<div className={css("list")}>
+				{products.map((product) => (
+					<ProductCard {...product} key={product.id} />
+				))}
 
-			{products.length === 0 && <div>No products found matching your criteria.</div>}
+				{products.length === 0 && <div>No products found matching your criteria.</div>}
 
-			{hasNextPage && (
-				<div ref={triggerRef} className={css("load-trigger")}>
-					{isFetchingNextPage && <div className={css("loading-indicator")}>Loading more products...</div>}
-				</div>
-			)}
+				{hasNextPage && (
+					<div ref={triggerRef} className={css("load-trigger")}>
+						{isFetchingNextPage && <div className={css("loading-indicator")}>Loading more products...</div>}
+					</div>
+				)}
 
-			<div ref={prefetchRef} className={css("prefetch-target")} />
+				<div ref={prefetchRef} className={css("prefetch-target")} />
+			</div>
 
 			<div>
 				Showing {products.length} of {totalCount} products

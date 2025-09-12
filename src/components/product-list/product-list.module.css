@@ -1,7 +1,12 @@
 .container {
-	display: grid;
+	display: flex;
+	flex-flow: column;
 	max-width: 1300px;
 	margin-inline: auto;
+}
+
+.list {
+	display: grid;
 
 	grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
 	grid-gap: var(--spacing);
