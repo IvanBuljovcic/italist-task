@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ProductCard } from "@/components/product-card/product-card";
 import { useProductListState } from "@/hooks/use-product-list-state";

@@ -19,44 +19,35 @@ type UseProductListStateOptions = {
 type UseProductListStateReturn = {
 	products: Product[];
 	totalCount: number;
-	
+
 	isLoading: boolean;
 	isError: boolean;
 	error: Error | null;
 	isFetchingNextPage: boolean;
 	hasNextPage: boolean;
-	
+
 	triggerRef: React.RefObject<HTMLDivElement | null>;
 	prefetchRef: React.RefObject<HTMLDivElement | null>;
-	
+
 	retry: () => void;
 };
 
-export const useProductListState = ({ 
-	initialFilters = {} 
-}: UseProductListStateOptions): UseProductListStateReturn => {
+export const useProductListState = ({ initialFilters = {} }: UseProductListStateOptions): UseProductListStateReturn => {
 	const { filters } = useFilterParams(initialFilters);
-	
-	const { 
-		data, 
-		hasNextPage, 
-		fetchNextPage, 
-		isFetchingNextPage, 
-		isLoading, 
-		isError, 
-		error,
-	} = useInfiniteProducts(filters);
-	
+
+	const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError, error } =
+		useInfiniteProducts(filters);
+
 	const prefetchNextPage = usePrefetchNextPage();
-	
+
 	const allProducts = data?.allProducts || [];
 	const totalCount = data?.totalCount || 0;
 	const currentPage = data?.pages?.length || 1;
-	
+
 	const handlePrefetch = useCallback(() => {
 		prefetchNextPage(filters, currentPage);
 	}, [prefetchNextPage, filters, currentPage]);
-	
+
 	const { triggerRef } = useInfiniteScroll({
 		hasNextPage,
 		isFetchingNextPage,
@@ -64,17 +55,17 @@ export const useProductListState = ({
 			await fetchNextPage();
 		},
 	});
-	
+
 	const { prefetchRef } = usePrefetch({
 		hasNextPage,
 		onPrefetch: handlePrefetch,
 		data: { filters, currentPage },
 	});
-	
+
 	const retry = useCallback(() => {
 		window.location.reload();
 	}, []);
-	
+
 	return {
 		products: allProducts,
 		totalCount,
