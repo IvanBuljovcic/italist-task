@@ -1,59 +1,73 @@
 "use client";
 
 import { ProductCard } from "@/components/product-card/product-card";
+import { useInfiniteProducts, usePrefetchNextPage } from "@/hooks/infinite-products";
 import { createStrictClassSelector } from "@/lib/class-selectors";
-import { Product } from "@/types/product";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import styles from "./product-list.module.css";
 
 const css = createStrictClassSelector(styles);
 
-type ProductListProps = {
-	products: Product[];
+type ProductFilters = {
+	search?: string;
+	sizes?: string[];
 };
 
-export const ProductList = ({ products }: ProductListProps) => {
-	const ITEMS_PER_LOAD = 20;
-	const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
-	const [isLoading, setIsLoading] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-	const observerTarget = useRef(null);
+type ProductListProps = {
+	filters?: ProductFilters;
+};
 
-	// const { allSizes } = useSizes();
+export const ProductList = ({ filters = {} }: ProductListProps) => {
+	const observerTarget = useRef<HTMLDivElement>(null);
+	const prefetchTarget = useRef<HTMLDivElement>(null);
 
-	const hasMoreProducts = visibleCount < products.length;
-	const visibleProducts = products.slice(0, visibleCount);
+	const { data, hasNextPage, fetchNextPage, isFetchingNextPage, isLoading, isError, error } =
+		useInfiniteProducts(filters);
 
-	const loadMoreProducts = useCallback(async () => {
-		if (isLoading || !hasMoreProducts) {
+	const prefetchNextPage = usePrefetchNextPage();
+
+	const allProducts = data?.allProducts || [];
+	const totalCount = data?.totalCount || 0;
+	const currentPage = data?.pages?.length || 1;
+
+	const handlePrefetch = useCallback(() => {
+		if (hasNextPage) {
+			prefetchNextPage(filters, currentPage);
+		}
+	}, [hasNextPage, prefetchNextPage, filters, currentPage]);
+
+	const loadNextPage = useCallback(async () => {
+		if (isFetchingNextPage || !hasNextPage) {
 			return;
 		}
 
-		setIsLoading(true);
-		setError(null);
-
 		try {
-			await new Promise((resolve) => setTimeout(resolve, 300)); // adding timeout to mimic an API request load time
-
-			setVisibleCount((prev) => Math.min(prev + ITEMS_PER_LOAD, products.length));
+			await fetchNextPage();
 		} catch (error) {
-			setError("Failed to load more products");
 			// eslint-disable-next-line no-console
-			console.error(error);
-		} finally {
-			setIsLoading(false);
+			console.error("Failed to load more products:", error);
 		}
-	}, [isLoading, hasMoreProducts, products.length]);
-
-	const listWrapper = useRef(null);
+	}, [isFetchingNextPage, hasNextPage, fetchNextPage]);
 
 	useEffect(() => {
+		const prefetchObserver = new IntersectionObserver(
+			(entries) => {
+				const [entry] = entries;
+				if (entry.isIntersecting) {
+					handlePrefetch();
+				}
+			},
+			{
+				threshold: 0.1,
+				rootMargin: "400px", // Larger margin for prefetching
+			}
+		);
+
 		const observer = new IntersectionObserver(
 			(entries) => {
 				const [entry] = entries;
-
 				if (entry.isIntersecting) {
-					loadMoreProducts();
+					loadNextPage();
 				}
 			},
 			{
@@ -62,40 +76,66 @@ export const ProductList = ({ products }: ProductListProps) => {
 			}
 		);
 
-		const currentTarget = observerTarget.current;
+		const prefetchCurrent = prefetchTarget.current;
+		if (prefetchCurrent) {
+			prefetchObserver.observe(prefetchCurrent);
+		}
 
+		const currentTarget = observerTarget.current;
 		if (currentTarget) {
 			observer.observe(currentTarget);
 		}
 
 		return () => {
+			if (prefetchCurrent) {
+				prefetchObserver.unobserve(prefetchCurrent);
+			}
+
 			if (currentTarget) {
 				observer.unobserve(currentTarget);
 			}
 		};
-	}, [loadMoreProducts]);
+	}, [loadNextPage, handlePrefetch]);
+
+	if (isLoading) {
+		return (
+			<div className={css("container")}>
+				<div className={css("loading-indicator")}>Loading products...</div>
+			</div>
+		);
+	}
+
+	if (isError) {
+		return (
+			<div className={css("container")}>
+				<div className={css("error")}>
+					<div>Failed to load products: {error?.message}</div>
+					<button onClick={() => window.location.reload()} type="button" className={css("try-again")}>
+						Try Again
+					</button>
+				</div>
+			</div>
+		);
+	}
 
 	return (
-		<div ref={listWrapper} className={css("container")}>
-			{visibleProducts.map((product) => (
-				<ProductCard {...(product as Product)} key={product.id} />
+		<div className={css("container")}>
+			{allProducts.map((product) => (
+				<ProductCard {...product} key={product.id} />
 			))}
 
-			{hasMoreProducts && (
+			{allProducts.length === 0 && !isLoading && <div>No products found matching your criteria.</div>}
+
+			{hasNextPage && (
 				<div ref={observerTarget} className={css("load-trigger")}>
-					{isLoading && <div className={css("loading-indicator")}>Loading more products...</div>}
-
-					{error && (
-						<div className={css("error")}>
-							<div>{error}</div>
-
-							<button onClick={loadMoreProducts} type="button" className={css("try-again")}>
-								Try Again
-							</button>
-						</div>
-					)}
+					{isFetchingNextPage && <div className={css("loading-indicator")}>Loading more products...</div>}
 				</div>
 			)}
+
+			<div>
+				Showing {allProducts.length} of {totalCount} products
+				{!hasNextPage && allProducts.length > 0 && <span>All products loaded</span>}
+			</div>
 		</div>
 	);
 };
