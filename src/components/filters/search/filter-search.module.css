@@ -11,13 +11,13 @@
 	flex-wrap: wrap;
 	gap: var(--spacing-sm);
 
-    position: relative;
+	position: relative;
 }
 
 .search-input {
-    width: clamp(20em, 50%, 50em);
-    padding-block: 0.85em;
-    padding-inline: 3em 1em;
+	width: clamp(20em, 50%, 50em);
+	padding-block: 0.85em;
+	padding-inline: 3em 1em;
 
 	border: 1px solid var(--color-border-main);
 	border-radius: var(--radius-lg);
@@ -42,16 +42,15 @@
 }
 
 .icon {
-    background-color: var(--color-accent);
-    border-radius: var(--radius-100);
-    padding: 0.25em;
-    
-    position: absolute;
-    top: 50%;
-    left: 0.5em;
-    transform: translateY(-50%);
-}
+	background-color: var(--color-accent);
+	border-radius: var(--radius-100);
+	padding: 0.25em;
 
+	position: absolute;
+	top: 50%;
+	left: 0.5em;
+	transform: translateY(-50%);
+}
 
 .search-stats {
 	color: var(--color-text-secondary);

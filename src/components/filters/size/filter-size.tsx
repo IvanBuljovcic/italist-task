@@ -50,7 +50,7 @@ export const SizeFilter = ({ sizes, selectedSizes, onSizeChange, initialVisibleC
 						onClick={() => handleSizeClick(size)}
 						className={clsx(css("size-button"), selectedSizes.includes(size) && css("selected"))}
 						type="button"
-						tabIndex={1}
+						tabIndex={0}
 					>
 						{size}
 					</button>
