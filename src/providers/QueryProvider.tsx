@@ -19,11 +19,7 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
 	);
 
 	return (
-		<SmartErrorBoundary
-			context="React Query Provider"
-			level="app"
-			maxRetries={2}
-		>
+		<SmartErrorBoundary context="React Query Provider" level="app" maxRetries={2}>
 			<QueryClientProvider client={queryClient}>
 				{children}
 				<ReactQueryDevtools initialIsOpen={false} />

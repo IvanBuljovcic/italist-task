@@ -30,21 +30,13 @@ export default async function Home({ searchParams }: HomeProps) {
 		<main className={css("container")}>
 			<h1 className={css("title")}>Fake products</h1>
 
-			<SmartErrorBoundary
-				context="Product Filters"
-				level="component"
-				maxRetries={3}
-			>
+			<SmartErrorBoundary context="Product Filters" level="component" maxRetries={3}>
 				<Suspense fallback={<div>Loading filters...</div>}>
 					<ProductFilters initialFilters={initialFilters} />
 				</Suspense>
 			</SmartErrorBoundary>
 
-			<SmartErrorBoundary
-				context="Product List"
-				level="component"
-				maxRetries={3}
-			>
+			<SmartErrorBoundary context="Product List" level="component" maxRetries={3}>
 				<Suspense fallback={<div>Loading products...</div>}>
 					<ProductList initialFilters={initialFilters} />
 				</Suspense>

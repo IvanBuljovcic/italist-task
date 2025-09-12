@@ -16,12 +16,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<SmartErrorBoundary
-					context="Application Root"
-					level="app"
-					enableNavigation={true}
-					maxRetries={2}
-				>
+				<SmartErrorBoundary context="Application Root" level="app" enableNavigation={true} maxRetries={2}>
 					<QueryProvider>{children}</QueryProvider>
 				</SmartErrorBoundary>
 			</body>

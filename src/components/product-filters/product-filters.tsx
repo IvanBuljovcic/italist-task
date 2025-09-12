@@ -65,19 +65,11 @@ export const ProductFilters = ({ initialFilters = {} }: ProductFiltersProps) => 
 
 	return (
 		<div className={css("container")}>
-			<SmartErrorBoundary
-				context="Size Filter"
-				level="component"
-				maxRetries={2}
-			>
+			<SmartErrorBoundary context="Size Filter" level="component" maxRetries={2}>
 				<SizeFilter sizes={sizes} selectedSizes={filters.sizes || []} onSizeChange={handleSizeChange} />
 			</SmartErrorBoundary>
 
-			<SmartErrorBoundary
-				context="Search Filter"
-				level="component"
-				maxRetries={2}
-			>
+			<SmartErrorBoundary context="Search Filter" level="component" maxRetries={2}>
 				<SearchFilter onChange={handleSearchChange} value={filters.search} />
 			</SmartErrorBoundary>
 		</div>
