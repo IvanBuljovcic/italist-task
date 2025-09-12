@@ -1,6 +1,10 @@
 import { ProductFilters } from "@/components/product-filters/product-filters";
 import { ProductList } from "@/components/product-list/product-list";
+import { createStrictClassSelector } from "@/lib/class-selectors";
 import { Suspense } from "react";
+import styles from './page.module.css';
+
+const css = createStrictClassSelector(styles);
 
 type HomeProps = {
 	searchParams?: Promise<{
@@ -22,8 +26,8 @@ export default async function Home({ searchParams }: HomeProps) {
 	};
 
 	return (
-		<main>
-			<h1>Fake products</h1>
+		<main className={css("container")}>
+			<h1 className={css("title")}>Fake products</h1>
 
 			<Suspense fallback={<div>Loading filters...</div>}>
 				<ProductFilters initialFilters={initialFilters} />

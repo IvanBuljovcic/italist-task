@@ -20,3 +20,12 @@
 	color: var(--color-text-secondary);
 	font-size: var(--font-size-sm);
 }
+
+@media (width < 1024px) {
+	.container {
+		width: 100%;
+		flex-flow: column-reverse wrap;
+		gap: var(--spacing-lg);
+		margin-block: var(--spacing-lg);
+	}
+}

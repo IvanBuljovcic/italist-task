@@ -17,6 +17,22 @@
 	padding: 0 var(--spacing-md);
 }
 
+.relative {
+	position: relative;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.sticky {
+	position: sticky;
+}
+
+.static {
+	position: static;
+}
+
 @media (width >= 768px) {
 	.container {
 		padding: 0 var(--spacing-lg);

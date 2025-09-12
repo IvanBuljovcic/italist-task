@@ -13,9 +13,10 @@
 
 .container {
 	display: flex;
-	padding: var(--spacing-md) 0;
 	flex-flow: column wrap;
 	gap: var(--spacing-sm);
+	max-width: 80vw;
+	margin-inline: auto;
 }
 
 .title {
@@ -79,5 +80,11 @@
 		outline: 2px solid #ef4444;
 		outline-offset: 2px;
 		border-radius: 2px;
+	}
+}
+
+@media (width < 1024px) {
+	.container {
+		width: 100%;
 	}
 }

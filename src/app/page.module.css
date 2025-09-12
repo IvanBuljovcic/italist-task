@@ -1,8 +1,18 @@
+:root {
+	--title-align: left;
+}
+
 .container {
-	display: grid;
 	max-width: 1300px;
 	margin-inline: auto;
+}
 
-	grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
-	grid-gap: var(--spacing);
+.title {
+	text-align: var(--title-align);
+}
+
+@media (width <= 1024px) {
+	:root {
+		--title-align: center;
+	}
 }

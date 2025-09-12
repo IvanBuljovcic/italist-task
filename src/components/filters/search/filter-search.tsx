@@ -1,11 +1,13 @@
 "use client";
 
 import { createStrictClassSelector } from "@/lib/class-selectors";
+import stylesUtils from "@/styles/utils.module.css";
 import { Search } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./filter-search.module.css";
 
 const css = createStrictClassSelector(styles);
+const cssUtils = createStrictClassSelector(stylesUtils);
 
 type SearchFilterProps = {
 	value?: string;
@@ -56,16 +58,17 @@ export const SearchFilter = ({
 	return (
 		<div className={css("container")}>
 			<div className={css("input-container")}>
-				<Search className={css("icon")} />
-
-				<input
-					type="search"
-					value={inputValue}
-					onChange={handleInputChange}
-					placeholder={placeholder}
-					className={css("search-input")}
-					aria-label="Search products"
-				/>
+				<div className={cssUtils("relative")}>
+					<Search className={css("icon")} />
+					<input
+						type="search"
+						value={inputValue}
+						onChange={handleInputChange}
+						placeholder={placeholder}
+						className={css("search-input")}
+						aria-label="Search products"
+					/>
+				</div>
 			</div>
 
 			{showStats && inputValue && (
