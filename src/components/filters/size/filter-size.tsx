@@ -42,7 +42,7 @@ export const SizeFilter = ({ sizes, selectedSizes, onSizeChange, initialVisibleC
 
 	return (
 		<div className={css("container")}>
-			<h3 className={css("title")}>Sizes</h3>
+			<h2 className={css("title")}>Sizes</h2>
 			<div className={css("button-container")}>
 				{sizesToShow.map((size) => (
 					<button

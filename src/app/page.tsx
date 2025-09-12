@@ -22,7 +22,7 @@ export default async function Home({ searchParams }: HomeProps) {
 	};
 
 	return (
-		<div>
+		<main>
 			<h1>Fake products</h1>
 
 			<Suspense fallback={<div>Loading filters...</div>}>
@@ -32,6 +32,6 @@ export default async function Home({ searchParams }: HomeProps) {
 			<Suspense fallback={<div>Loading products...</div>}>
 				<ProductList initialFilters={initialFilters} />
 			</Suspense>
-		</div>
+		</main>
 	);
 }

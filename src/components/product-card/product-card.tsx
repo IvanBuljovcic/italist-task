@@ -1,4 +1,5 @@
 import { createStrictClassSelector } from "@/lib/class-selectors";
+import stylesUtils from "@/styles/utils.module.css";
 import { Product } from "@/types/product";
 import { clsx } from "clsx";
 import { Heart } from "lucide-react";
@@ -6,6 +7,7 @@ import { ProductCardImage } from "./product-card-image";
 import styles from "./product-card.module.css";
 
 const css = createStrictClassSelector(styles);
+const cssUtils = createStrictClassSelector(stylesUtils);
 
 export const ProductCard = (props: Product) => {
 	return (
@@ -14,6 +16,7 @@ export const ProductCard = (props: Product) => {
 				<div className={css("tag-wrapper")}>
 					<button type="submit" className={css("cta-favorites")}>
 						<Heart width={12} height={12} />
+						<span className={cssUtils("sr-only")}>Add to favorites</span>
 					</button>
 				</div>
 
