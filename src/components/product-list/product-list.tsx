@@ -69,7 +69,7 @@ export const ProductList = ({ initialFilters = {} }: ProductListProps) => {
 				<div ref={prefetchRef} className={css("prefetch-target")} />
 			</div>
 
-			<div>
+			<div className={css("paging-info")}>
 				Showing {products.length} of {totalCount} products
 				{!hasNextPage && products.length > 0 && <span> - All products loaded</span>}
 			</div>

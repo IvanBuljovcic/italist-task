@@ -61,3 +61,19 @@
 	bottom: 800px;
 	height: 1px;
 }
+
+.paging-info {
+	display: flex;
+	justify-content: center;
+	padding-block-start: var(--spacing);
+	margin-block-start: var(--spacing);
+	gap: var(--spacing-sm);
+
+	border-top-color: var(--color-border-main);
+	border-top-width: 1px;
+	border-top-style: solid;
+
+	color: var(--color-category);
+	font-size: var(--font-size-2xl);
+	font-style: italic;
+}
